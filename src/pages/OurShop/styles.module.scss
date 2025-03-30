@@ -22,13 +22,16 @@
 }
 
 .containerBanner {
-    background-image: url('https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Background.jpeg');
-    height: 279px;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    max-width: '800px';
+    margin: '0 auto';
     margin-top: 10px;
+
+    .BannerItem {
+        width: '100%';
+        height: 'auto';
+        object-fit: 'cover'; // Đảm bảo ảnh không bị méo
+        border-radius: '8px';
+    }
 
     .contentBox {
         @include flex_box_custom(space-between, center, 30px);

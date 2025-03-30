@@ -16,18 +16,18 @@
         @include flex_box_custom(unset, flex-start, 20px);
 
         .imageBox {
-            max-width: 610px;
+            max-width: 500px;
             width: 100%;
 
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
 
-            img {
-                width: calc(100% / 2 - 10px);
-                height: 350px;
-                object-fit: cover;
-                border-radius: 3px;
+            .imageBoxItem {
+                width: '100%';
+                height: 'auto';
+                object-fit: 'cover';
+                border-radius: '8px';
                 cursor: zoom-in;
             }
         }

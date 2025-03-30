@@ -23,6 +23,8 @@ import { ToastContext } from '@/contexts/ToastProvider';
 import Cookies from 'js-cookie';
 import { addProductToCart } from '@/apis/cartService';
 
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const INCREMENT = 'increment';
 const DECREMENT = 'decrement';
 
@@ -33,6 +35,7 @@ function DetailProduct() {
         contentSection,
         price,
         imageBox,
+        imageBoxItem,
         infoBox,
         description,
         boxSize,
@@ -66,6 +69,12 @@ function DetailProduct() {
     const [isLoadingBtn, setIsLoadingBtn] = useState(false);
     const [isLoadingBtnBuyNow, setIsLoadingBtnBuyNow] = useState(false);
 
+    const images = [
+        'https://pos.nvncdn.com/f2fe44-24897/ps/20230821_o5LKOchlIF.jpeg',
+        'https://pos.nvncdn.com/f2fe44-24897/ps/20230818_WBen1qWfCq.jpeg',
+        'https://pos.nvncdn.com/f2fe44-24897/ps/20230818_gWTNTGRu66.jpeg'
+    ];
+
     const dataAccordionMenu = [
         {
             id: 1,
@@ -79,7 +88,7 @@ function DetailProduct() {
         }
     ];
 
-    const handleRenderZoomImage = (src) => {
+    const handleRenderZoomImage = src => {
         return (
             <ReactImageMagnifier
                 srcPreview={src}
@@ -90,11 +99,11 @@ function DetailProduct() {
         );
     };
 
-    const handleSetMenuSelected = (id) => {
+    const handleSetMenuSelected = id => {
         setMenuSelected(id);
     };
 
-    const handleSelectedSize = (size) => {
+    const handleSelectedSize = size => {
         setSizeSelected(size);
     };
 
@@ -102,15 +111,15 @@ function DetailProduct() {
         setSizeSelected('');
     };
 
-    const handleSetQuantity = (type) => {
+    const handleSetQuantity = type => {
         if (quantity < 1) return;
 
-        setQuantity((prev) =>
+        setQuantity(prev =>
             type === INCREMENT ? (prev += 1) : quantity === 1 ? 1 : (prev -= 1)
         );
     };
 
-    const fetchDataDetail = async (id) => {
+    const fetchDataDetail = async id => {
         setIsLoading(true);
         try {
             const data = await getDetailProduct(id);
@@ -124,7 +133,7 @@ function DetailProduct() {
         }
     };
 
-    const fetchDataRelatedProduct = async (id) => {
+    const fetchDataRelatedProduct = async id => {
         setIsLoading(true);
         try {
             const data = await getRelatedProduct(id);
@@ -161,12 +170,12 @@ function DetailProduct() {
 
         setIsLoadingBtnBuyNow(true);
         addProductToCart(data)
-            .then((res) => {
+            .then(res => {
                 toast.success('Add Product to cart successfully!');
                 setIsLoadingBtnBuyNow(false);
                 navigate('/cart');
             })
-            .catch((err) => {
+            .catch(err => {
                 toast.error('Add Product to cart failed!');
                 setIsLoadingBtnBuyNow(false);
             });
@@ -211,9 +220,28 @@ function DetailProduct() {
                             ) : (
                                 <div className={contentSection}>
                                     <div className={imageBox}>
-                                        {data?.images.map((src) =>
-                                            handleRenderZoomImage(src)
-                                        )}
+                                        <Carousel
+                                            showArrows={false} // Hiển thị mũi tên điều hướng
+                                            showThumbs={true} // Hiển thị thumbnails
+                                            showStatus={false} // Ẩn trạng thái (ví dụ: 1/5)
+                                            infiniteLoop={true} // Lặp vô hạn
+                                            autoPlay={true} // Tự động chạy
+                                            interval={3000} // Chuyển slide sau 3 giây
+                                            stopOnHover={true} // Dừng khi hover
+                                            emulateTouch={true} // Hỗ trợ swipe trên desktop
+                                        >
+                                            {images.map((image, index) => (
+                                                <div key={index}>
+                                                    <img
+                                                        className={imageBoxItem}
+                                                        src={image}
+                                                        alt={`Slide ${
+                                                            index + 1
+                                                        }`}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </Carousel>
                                     </div>
                                     <div className={infoBox}>
                                         <h1>{data?.name}</h1>

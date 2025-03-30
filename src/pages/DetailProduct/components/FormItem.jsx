@@ -4,7 +4,7 @@ import styles from '../styles.module.scss';
 function FormItem({ label, isRequired, typeChildren }) {
     const { formItem, boxItemStar } = styles;
 
-    const renderStar = (length) => {
+    const renderStar = length => {
         return Array.from({ length }, (_, index) => (
             <GoStarFill
                 key={index}

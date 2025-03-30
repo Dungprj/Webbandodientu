@@ -26,11 +26,15 @@ function ListProducts() {
                 ) : (
                     <>
                         <div className={isShowGrid ? containerProduct : ''}>
-                            {products.map((item) => (
+                            {products.map(item => (
                                 <ProductItem
                                     key={item.id}
-                                    src={item.images[0]}
-                                    prevSrc={item.images[1]}
+                                    src={
+                                        'https://pos.nvncdn.com/f2fe44-24897/ps/20230818_WBen1qWfCq.jpeg'
+                                    }
+                                    prevSrc={
+                                        'https://pos.nvncdn.com/f2fe44-24897/ps/20230818_gWTNTGRu66.jpeg'
+                                    }
                                     name={item.name}
                                     price={item.price}
                                     details={item}
