@@ -1,111 +1,459 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box } from '@mui/material';
-
-import { Menu, MenuItem } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-const Category = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+import { MegaMenu } from 'primereact/megamenu';
+import styles from '../styles.module.scss';
+function Category() {
+    const { containerCategory, customMegamenu } = styles;
+    const items = [
+        {
+            label: 'Furniture',
+            icon: 'pi pi-box',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Armchair' },
+                            { label: 'Coffee Table' },
+                            { label: 'Couch' },
+                            { label: 'TV Stand' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [
+                            { label: 'Bar stool' },
+                            { label: 'Chair' },
+                            { label: 'Table' }
+                        ]
+                    },
+                    {
+                        label: 'Bathroom',
+                        items: [{ label: 'Accessories' }]
+                    }
+                ],
+                [
+                    {
+                        label: 'Bedroom',
+                        items: [
+                            { label: 'Bed' },
+                            { label: 'Chaise lounge' },
+                            { label: 'Cupboard' },
+                            { label: 'Dresser' },
+                            { label: 'Wardrobe' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Office',
+                        items: [
+                            { label: 'Bookcase' },
+                            { label: 'Cabinet' },
+                            { label: 'Chair' },
+                            { label: 'Desk' },
+                            { label: 'Executive Chair' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Furniture',
+            icon: 'pi pi-box',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Armchair' },
+                            { label: 'Coffee Table' },
+                            { label: 'Couch' },
+                            { label: 'TV Stand' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [
+                            { label: 'Bar stool' },
+                            { label: 'Chair' },
+                            { label: 'Table' }
+                        ]
+                    },
+                    {
+                        label: 'Bathroom',
+                        items: [{ label: 'Accessories' }]
+                    }
+                ],
+                [
+                    {
+                        label: 'Bedroom',
+                        items: [
+                            { label: 'Bed' },
+                            { label: 'Chaise lounge' },
+                            { label: 'Cupboard' },
+                            { label: 'Dresser' },
+                            { label: 'Wardrobe' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Office',
+                        items: [
+                            { label: 'Bookcase' },
+                            { label: 'Cabinet' },
+                            { label: 'Chair' },
+                            { label: 'Desk' },
+                            { label: 'Executive Chair' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Furniture',
+            icon: 'pi pi-box',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Armchair' },
+                            { label: 'Coffee Table' },
+                            { label: 'Couch' },
+                            { label: 'TV Stand' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [
+                            { label: 'Bar stool' },
+                            { label: 'Chair' },
+                            { label: 'Table' }
+                        ]
+                    },
+                    {
+                        label: 'Bathroom',
+                        items: [{ label: 'Accessories' }]
+                    }
+                ],
+                [
+                    {
+                        label: 'Bedroom',
+                        items: [
+                            { label: 'Bed' },
+                            { label: 'Chaise lounge' },
+                            { label: 'Cupboard' },
+                            { label: 'Dresser' },
+                            { label: 'Wardrobe' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Office',
+                        items: [
+                            { label: 'Bookcase' },
+                            { label: 'Cabinet' },
+                            { label: 'Chair' },
+                            { label: 'Desk' },
+                            { label: 'Executive Chair' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Furniture',
+            icon: 'pi pi-box',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Armchair' },
+                            { label: 'Coffee Table' },
+                            { label: 'Couch' },
+                            { label: 'TV Stand' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [
+                            { label: 'Bar stool' },
+                            { label: 'Chair' },
+                            { label: 'Table' }
+                        ]
+                    },
+                    {
+                        label: 'Bathroom',
+                        items: [{ label: 'Accessories' }]
+                    }
+                ],
+                [
+                    {
+                        label: 'Bedroom',
+                        items: [
+                            { label: 'Bed' },
+                            { label: 'Chaise lounge' },
+                            { label: 'Cupboard' },
+                            { label: 'Dresser' },
+                            { label: 'Wardrobe' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Office',
+                        items: [
+                            { label: 'Bookcase' },
+                            { label: 'Cabinet' },
+                            { label: 'Chair' },
+                            { label: 'Desk' },
+                            { label: 'Executive Chair' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Furniture',
+            icon: 'pi pi-box',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Armchair' },
+                            { label: 'Coffee Table' },
+                            { label: 'Couch' },
+                            { label: 'TV Stand' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [
+                            { label: 'Bar stool' },
+                            { label: 'Chair' },
+                            { label: 'Table' }
+                        ]
+                    },
+                    {
+                        label: 'Bathroom',
+                        items: [{ label: 'Accessories' }]
+                    }
+                ],
+                [
+                    {
+                        label: 'Bedroom',
+                        items: [
+                            { label: 'Bed' },
+                            { label: 'Chaise lounge' },
+                            { label: 'Cupboard' },
+                            { label: 'Dresser' },
+                            { label: 'Wardrobe' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Office',
+                        items: [
+                            { label: 'Bookcase' },
+                            { label: 'Cabinet' },
+                            { label: 'Chair' },
+                            { label: 'Desk' },
+                            { label: 'Executive Chair' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Furniture',
+            icon: 'pi pi-box',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Armchair' },
+                            { label: 'Coffee Table' },
+                            { label: 'Couch' },
+                            { label: 'TV Stand' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [
+                            { label: 'Bar stool' },
+                            { label: 'Chair' },
+                            { label: 'Table' }
+                        ]
+                    },
+                    {
+                        label: 'Bathroom',
+                        items: [{ label: 'Accessories' }]
+                    }
+                ],
+                [
+                    {
+                        label: 'Bedroom',
+                        items: [
+                            { label: 'Bed' },
+                            { label: 'Chaise lounge' },
+                            { label: 'Cupboard' },
+                            { label: 'Dresser' },
+                            { label: 'Wardrobe' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Office',
+                        items: [
+                            { label: 'Bookcase' },
+                            { label: 'Cabinet' },
+                            { label: 'Chair' },
+                            { label: 'Desk' },
+                            { label: 'Executive Chair' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Electronics',
+            icon: 'pi pi-mobile',
+            items: [
+                [
+                    {
+                        label: 'Computer',
+                        items: [
+                            { label: 'Monitor' },
+                            { label: 'Mouse' },
+                            { label: 'Notebook' },
+                            { label: 'Keyboard' },
+                            { label: 'Printer' },
+                            { label: 'Storage' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Home Theather',
+                        items: [
+                            { label: 'Projector' },
+                            { label: 'Speakers' },
+                            { label: 'TVs' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Gaming',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Console' },
+                            { label: 'PC' },
+                            { label: 'Video Games' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Appliances',
+                        items: [
+                            { label: 'Coffee Machine' },
+                            { label: 'Fridge' },
+                            { label: 'Oven' },
+                            { label: 'Vaccum Cleaner' },
+                            { label: 'Washing Machine' }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            label: 'Sports',
+            icon: 'pi pi-clock',
+            items: [
+                [
+                    {
+                        label: 'Football',
+                        items: [
+                            { label: 'Kits' },
+                            { label: 'Shoes' },
+                            { label: 'Shorts' },
+                            { label: 'Training' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Running',
+                        items: [
+                            { label: 'Accessories' },
+                            { label: 'Shoes' },
+                            { label: 'T-Shirts' },
+                            { label: 'Shorts' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Swimming',
+                        items: [
+                            { label: 'Kickboard' },
+                            { label: 'Nose Clip' },
+                            { label: 'Swimsuits' },
+                            { label: 'Paddles' }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        label: 'Tennis',
+                        items: [
+                            { label: 'Balls' },
+                            { label: 'Rackets' },
+                            { label: 'Shoes' },
+                            { label: 'Training' }
+                        ]
+                    }
+                ]
+            ]
+        }
+    ];
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            {/* Tiêu đề "DANH MỤC SẢN PHẨM" */}
-            <AppBar position='static' sx={{ bgcolor: '#1976d2' }}>
-                <Toolbar variant='dense'>
-                    <Typography
-                        variant='h6'
-                        sx={{
-                            flexGrow: 1,
-                            textAlign: 'center',
-                            color: 'white'
-                        }}
-                    >
-                        DANH MỤC SẢN PHẨM
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-
-            {/* Menu danh mục */}
-            <Box
-                sx={{
-                    bgcolor: '#f5f5f5',
-                    py: 1,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: 2
-                }}
-            >
-                <div>
-                    <IconMenuItem
-                        onClick={handleClick}
-                        label='Danh mục'
-                        rightIcon={<ExpandMoreIcon />}
-                    />
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left'
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left'
-                        }}
-                    >
-                        <MenuItem onClick={handleClose}>
-                            SẢN PHẨM BÁN LẺ
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                            HÀNG HOT HÈ 2024
-                        </MenuItem>
-                        <NestedMenuItem
-                            label='VÍ ĐIỆU KIỆN - KIT PHÁT TRIỂN'
-                            parentMenuOpen={Boolean(anchorEl)}
-                        >
-                            <MenuItem onClick={handleClose}>TRIỂN</MenuItem>
-                        </NestedMenuItem>
-                        <NestedMenuItem
-                            label='TOOL, THIẾT BỊ, PHỤ KIỆN'
-                            parentMenuOpen={Boolean(anchorEl)}
-                        >
-                            <MenuItem onClick={handleClose}>
-                                QUẠT LÝ NHIỆT ĐỘ
-                            </MenuItem>
-                        </NestedMenuItem>
-                        <NestedMenuItem
-                            label='CONNECTORS'
-                            parentMenuOpen={Boolean(anchorEl)}
-                        >
-                            <MenuItem onClick={handleClose}>
-                                CỔ ĐIỆN TỬ
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>NGUỒN</MenuItem>
-                            <MenuItem onClick={handleClose}>PIN</MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                LINH KIỆN THỬ ĐỘNG
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                LINH KIỆN BÁN DẪN
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                IC CHỨC NĂNG
-                            </MenuItem>
-                        </NestedMenuItem>
-                    </Menu>
-                </div>
-            </Box>
-        </Box>
+        <div className={containerCategory}>
+            <MegaMenu
+                className={customMegamenu}
+                model={items}
+                orientation='horizontal'
+                breakpoint='960px'
+            />
+        </div>
     );
-};
+}
 
 export default Category;

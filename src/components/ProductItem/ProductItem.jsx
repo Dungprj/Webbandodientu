@@ -53,7 +53,7 @@ function ProductItem({
         btnClear
     } = styles;
 
-    const handleChooseSize = (size) => {
+    const handleChooseSize = size => {
         setSizeChoose(size);
     };
 

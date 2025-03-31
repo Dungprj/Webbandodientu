@@ -1,8 +1,9 @@
 import BoxIcon from './BoxIcon/BoxIcon';
-import Menu from './Menu/Menu';
+import Search from './Search/Search';
+import { Image } from 'primereact/image';
 import { dataBoxIcon, dataMenu } from './constants';
 import styles from './styles.module.scss';
-import Logo from '@icons/images/Logo-retina.png';
+import Logo from '@icons/images/logoBanlinhkien.png';
 import { TfiReload } from 'react-icons/tfi';
 import { BsHeart } from 'react-icons/bs';
 import { PiShoppingCart } from 'react-icons/pi';
@@ -12,7 +13,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { useContext } from 'react';
 import { SideBarContext } from '@/contexts/SideBarProvider';
-
+import { useNavigate } from 'react-router-dom';
 function MyHeader() {
     const {
         containerBoxIcon,
@@ -25,7 +26,7 @@ function MyHeader() {
         boxCart,
         quantity
     } = styles;
-
+    const navigate = useNavigate();
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
     const {
@@ -36,7 +37,7 @@ function MyHeader() {
         handleGetListProductsCart
     } = useContext(SideBarContext);
 
-    const handleOpenSideBar = (type) => {
+    const handleOpenSideBar = type => {
         setIsOpen(true);
         setType(type);
     };
@@ -58,38 +59,40 @@ function MyHeader() {
         >
             <div className={containerHeader}>
                 <div className={containerBox}>
-                    <div className={containerBoxIcon}>
-                        {dataBoxIcon.map((item) => {
+                    {/* <div className={containerBoxIcon}>
+                        {dataBoxIcon.map(item => {
                             return (
                                 <BoxIcon type={item.type} href={item.href} />
                             );
                         })}
-                    </div>
+                    </div> */}
                     <div className={containerMenu}>
-                        {dataMenu.slice(0, 3).map((item) => {
-                            return (
-                                <Menu content={item.content} href={item.href} />
-                            );
-                        })}
+                        <div>
+                            <Image
+                                style={{ cursor: 'pointer' }}
+                                src={Logo}
+                                alt='Logo'
+                                width='300px'
+                                onClick={() => {
+                                    navigate('/');
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <img
-                        src={Logo}
-                        alt='Logo'
-                        style={{
-                            width: '153px',
-                            height: '53px'
-                        }}
-                    />
+
+                <div className={containerBox}>
+                    <Search />
                 </div>
+
                 <div className={containerBox}>
                     <div className={containerMenu}>
-                        {dataMenu.slice(3, dataMenu.length).map((item) => {
+                        {/* render tiep menu */}
+                        {/* {dataMenu.slice(3, dataMenu.length).map(item => {
                             return (
                                 <Menu content={item.content} href={item.href} />
                             );
-                        })}
+                        })} */}
                     </div>
 
                     <div className={containerBoxIcon}>

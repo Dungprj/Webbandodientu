@@ -1,15 +1,24 @@
 import MyHeader from '@components/Header/Header';
+
 import MainLayout from '@components/Layout/Layout';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Banner from '@pages/OurShop/components/Banner';
+import Category from '@pages/OurShop/components/Category';
+
 import { OurShopProvider } from '@contexts/OurShopProvider';
 import Filter from '@pages/OurShop/components/Filter';
 import ListProducts from '@pages/OurShop/components/ListProducts';
 import MyFooter from '@components/Footer/Footer';
 
 function OutShop() {
-    const { container, functionBox, specialText, btnBack } = styles;
+    const {
+        container,
+        functionBox,
+        specialText,
+        btnBack,
+        containerCateandBanner
+    } = styles;
     const navigate = useNavigate();
 
     const handleBackPreviousPage = () => {
@@ -19,6 +28,7 @@ function OutShop() {
     return (
         <OurShopProvider>
             <MyHeader />
+
             <MainLayout>
                 <div className={container}>
                     <div className={functionBox}>
@@ -33,6 +43,7 @@ function OutShop() {
                         </div>
                     </div>
                 </div>
+                <Category />
 
                 <Banner />
 

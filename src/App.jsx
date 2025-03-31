@@ -6,31 +6,35 @@ import SideBar from '@components/Sidebar/Sidebar';
 import { ToastProvider } from '@/contexts/ToastProvider';
 import { StoreProvider } from '@/contexts/storeProvider';
 
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
+
 function App() {
     return (
-        <StoreProvider>
-            <ToastProvider>
-                <SidebarProvider>
-                    <BrowserRouter>
-                        <SideBar />
+        <PrimeReactProvider>
+            <StoreProvider>
+                <ToastProvider>
+                    <SidebarProvider>
+                        <BrowserRouter>
+                            <SideBar />
 
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Routes>
-                                {routers.map((item, index) => {
-                                    return (
-                                        <Route
-                                            path={item.path}
-                                            element={<item.component />}
-                                            key={index}
-                                        />
-                                    );
-                                })}
-                            </Routes>
-                        </Suspense>
-                    </BrowserRouter>
-                </SidebarProvider>
-            </ToastProvider>
-        </StoreProvider>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Routes>
+                                    {routers.map((item, index) => {
+                                        return (
+                                            <Route
+                                                path={item.path}
+                                                element={<item.component />}
+                                                key={index}
+                                            />
+                                        );
+                                    })}
+                                </Routes>
+                            </Suspense>
+                        </BrowserRouter>
+                    </SidebarProvider>
+                </ToastProvider>
+            </StoreProvider>
+        </PrimeReactProvider>
     );
 }
 

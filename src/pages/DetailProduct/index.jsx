@@ -22,9 +22,7 @@ import { SideBarContext } from '@/contexts/SideBarProvider';
 import { ToastContext } from '@/contexts/ToastProvider';
 import Cookies from 'js-cookie';
 import { addProductToCart } from '@/apis/cartService';
-
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Galleria } from 'primereact/galleria';
 const INCREMENT = 'increment';
 const DECREMENT = 'decrement';
 
@@ -69,11 +67,63 @@ function DetailProduct() {
     const [isLoadingBtn, setIsLoadingBtn] = useState(false);
     const [isLoadingBtnBuyNow, setIsLoadingBtnBuyNow] = useState(false);
 
-    const images = [
-        'https://pos.nvncdn.com/f2fe44-24897/ps/20230821_o5LKOchlIF.jpeg',
-        'https://pos.nvncdn.com/f2fe44-24897/ps/20230818_WBen1qWfCq.jpeg',
-        'https://pos.nvncdn.com/f2fe44-24897/ps/20230818_gWTNTGRu66.jpeg'
-    ];
+    const [images, setImages] = useState([]);
+    const [activeIndex, setActiveIndex] = useState(0); // Quản lý ảnh đang hiển thị
+
+    // Dữ liệu ảnh mẫu
+    useEffect(() => {
+        const data = [
+            {
+                itemImageSrc:
+                    'https://pos.nvncdn.com/f2fe44-24897/ps/20230812_uYm8JxNdLJ.jpeg',
+                thumbnailImageSrc:
+                    'https://pos.nvncdn.com/f2fe44-24897/ps/20230812_uYm8JxNdLJ.jpeg',
+                alt: 'Banner 1'
+            },
+            {
+                itemImageSrc:
+                    'https://pos.nvncdn.com/f2fe44-24897/ps/20230809_a9QMy9yPdw.jpeg',
+                thumbnailImageSrc:
+                    'https://pos.nvncdn.com/f2fe44-24897/ps/20230809_a9QMy9yPdw.jpeg',
+                alt: 'Banner 2'
+            },
+            {
+                itemImageSrc:
+                    'https://pos.nvncdn.com/f2fe44-24897/ps/20230812_uYm8JxNdLJ.jpeg',
+                thumbnailImageSrc:
+                    'https://pos.nvncdn.com/f2fe44-24897/ps/20230812_uYm8JxNdLJ.jpeg',
+                alt: 'Banner 3'
+            }
+        ];
+        setImages(data);
+    }, []);
+
+    // Template cho ảnh lớn
+    const itemTemplate = item => {
+        return (
+            <img
+                src={item.itemImageSrc}
+                alt={item.alt}
+                style={{ width: '100%', display: 'block' }}
+            />
+        );
+    };
+
+    // Template cho thumbnail (không cần trong Galleria vì ta sẽ tự tạo)
+    const thumbnailTemplate = item => {
+        return (
+            <img
+                src={item.thumbnailImageSrc}
+                alt={item.alt}
+                style={{ width: '100px', height: '60px', objectFit: 'cover' }}
+            />
+        );
+    };
+
+    // Xử lý khi hover vào thumbnail
+    const handleThumbnailHover = index => {
+        setActiveIndex(index); // Cập nhật activeIndex để hiển thị ảnh lớn tương ứng
+    };
 
     const dataAccordionMenu = [
         {
@@ -220,28 +270,64 @@ function DetailProduct() {
                             ) : (
                                 <div className={contentSection}>
                                     <div className={imageBox}>
-                                        <Carousel
-                                            showArrows={false} // Hiển thị mũi tên điều hướng
-                                            showThumbs={true} // Hiển thị thumbnails
-                                            showStatus={false} // Ẩn trạng thái (ví dụ: 1/5)
-                                            infiniteLoop={true} // Lặp vô hạn
-                                            autoPlay={true} // Tự động chạy
-                                            interval={3000} // Chuyển slide sau 3 giây
-                                            stopOnHover={true} // Dừng khi hover
-                                            emulateTouch={true} // Hỗ trợ swipe trên desktop
+                                        {/* Galleria chính */}
+                                        <Galleria
+                                            value={images}
+                                            activeIndex={activeIndex}
+                                            onItemChange={e =>
+                                                setActiveIndex(e.index)
+                                            } // Cập nhật activeIndex khi người dùng chuyển ảnh
+                                            showThumbnails={false} // Tắt thumbnail mặc định của Galleria
+                                            item={itemTemplate}
+                                            style={{ width: '100%' }}
+                                        />
+
+                                        {/* Danh sách thumbnail tùy chỉnh */}
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                gap: '10px',
+                                                marginTop: '10px',
+                                                flexWrap: 'wrap'
+                                            }}
                                         >
                                             {images.map((image, index) => (
-                                                <div key={index}>
+                                                <div
+                                                    key={index}
+                                                    onMouseEnter={() =>
+                                                        handleThumbnailHover(
+                                                            index
+                                                        )
+                                                    } // Khi hover, cập nhật activeIndex
+                                                    style={{
+                                                        cursor: 'pointer',
+                                                        border:
+                                                            activeIndex ===
+                                                            index
+                                                                ? '2px solid #007bff'
+                                                                : '1px solid #ddd', // Highlight thumbnail đang active
+                                                        padding: '2px',
+                                                        borderRadius: '4px',
+                                                        transition:
+                                                            'border 0.3s'
+                                                    }}
+                                                >
                                                     <img
-                                                        className={imageBoxItem}
-                                                        src={image}
-                                                        alt={`Slide ${
-                                                            index + 1
-                                                        }`}
+                                                        src={
+                                                            image.thumbnailImageSrc
+                                                        }
+                                                        alt={image.alt}
+                                                        style={{
+                                                            width: '100px',
+                                                            height: '60px',
+                                                            objectFit: 'cover',
+                                                            display: 'block'
+                                                        }}
                                                     />
                                                 </div>
                                             ))}
-                                        </Carousel>
+                                        </div>
                                     </div>
                                     <div className={infoBox}>
                                         <h1>{data?.name}</h1>
