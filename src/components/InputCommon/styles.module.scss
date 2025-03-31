@@ -1,11 +1,11 @@
-@import '@styles/variable.module.scss';
+@use '@styles/variable.module.scss' as variables;
 
 .container {
     margin-bottom: 20px;
 
     .labelInput {
         font-size: 14px;
-        color: $four_color;
+        color: variables.$four_color;
         margin-bottom: 5px;
     }
 

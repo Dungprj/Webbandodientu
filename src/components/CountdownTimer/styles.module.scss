@@ -1,4 +1,4 @@
-@import '@styles/variable.module.scss';
+@use '@styles/variable.module.scss' as variables;
 
 .box {
     background-color: white;
@@ -9,5 +9,5 @@
 
 .title {
     font-size: 18px;
-    color: $seconddary_color;
+    color: variables.$seconddary_color;
 }

@@ -1,7 +1,7 @@
-@import '@styles/mixin.module.scss';
+@use '@styles/mixin.module.scss' as mixins;
 
 .container {
-    @include flex_box_custom(center, center, 10px);
+    @include mixins.flex_box_custom(center, center, 10px);
     flex-direction: column;
 
     div {
